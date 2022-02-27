@@ -1,13 +1,11 @@
 package com.example.liquibase_test.model;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
+@AllArgsConstructor
 @RequiredArgsConstructor
 @Setter
 @Getter
@@ -26,4 +24,6 @@ public class Animal {
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
+    public Animal(String animal_name, String breed, String age, Employee employee) {
+    }
 }
