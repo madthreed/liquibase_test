@@ -1,10 +1,14 @@
 package com.example.liquibase_test.controllers;
 
-import com.example.liquibase_test.model.Animal;
+import com.example.liquibase_test.dtos.AnimalDTO;
 import com.example.liquibase_test.services.AnimalService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+/**
+ * Created by MadThreeD on 2022.
+ */
 
 @RestController()
 @RequestMapping("/animals")
@@ -16,11 +20,27 @@ public class AnimalController {
     }
 
     @GetMapping
-    List<Animal> getAllAnimals() {
-        return null;
+    public List<AnimalDTO> readAll() {
+        return animalService.readAll();
     }
 
-    @PostMapping
-    void add(@RequestBody Animal animal) {
+    @GetMapping("{id}")
+    public AnimalDTO read(@PathVariable Long id) {
+        return animalService.read(id);
+    }
+
+    @PostMapping()
+    public AnimalDTO create(@RequestBody AnimalDTO animalDTO) {
+        return animalService.create(animalDTO);
+    }
+
+    @PutMapping("{id}")
+    public AnimalDTO update(@RequestBody AnimalDTO animalDTO, @PathVariable Long id) {
+        return animalService.update(animalDTO, id);
+    }
+
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable Long id) {
+        animalService.delete(id);
     }
 }

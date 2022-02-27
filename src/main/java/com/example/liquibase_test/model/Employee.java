@@ -1,5 +1,6 @@
 package com.example.liquibase_test.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -7,7 +8,12 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Created by MadThreeD on 2022.
+ */
+
 @Entity
+@AllArgsConstructor
 @RequiredArgsConstructor
 @Setter
 @Getter
@@ -23,6 +29,6 @@ public class Employee {
     @OneToMany
     private List<Animal> animals = new java.util.ArrayList<>();
 
-    @OneToMany
-    private List<House> houses = new java.util.ArrayList<>();
+//    @OneToMany
+//    private List<House> houses = new java.util.ArrayList<>();
 }
