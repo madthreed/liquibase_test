@@ -1,13 +1,14 @@
 package com.example.liquibase_test.controllers;
 
 import com.example.liquibase_test.dtos.AnimalDTO;
-import com.example.liquibase_test.model.Animal;
 import com.example.liquibase_test.services.AnimalService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+/**
+ * Created by MadThreeD on 2022.
+ */
 
 @RestController()
 @RequestMapping("/animals")
@@ -19,20 +20,27 @@ public class AnimalController {
     }
 
     @GetMapping
-    public ResponseEntity<List<AnimalDTO>> readAll() {
-        List<AnimalDTO> animals = animalService.readAll();
-
-        return animals != null
-                ? new ResponseEntity<>(animals, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public List<AnimalDTO> readAll() {
+        return animalService.readAll();
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<AnimalDTO> read(@PathVariable Long id) {
-        AnimalDTO animalDto = animalService.read(id);
+    public AnimalDTO read(@PathVariable Long id) {
+        return animalService.read(id);
+    }
 
-        return animalDto != null
-                ? new ResponseEntity<>(animalDto, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @PostMapping()
+    public AnimalDTO create(@RequestBody AnimalDTO animalDTO) {
+        return animalService.create(animalDTO);
+    }
+
+    @PutMapping("{id}")
+    public AnimalDTO update(@RequestBody AnimalDTO animalDTO, @PathVariable Long id) {
+        return animalService.update(animalDTO, id);
+    }
+
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable Long id) {
+        animalService.delete(id);
     }
 }

@@ -7,6 +7,10 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Created by MadThreeD on 2022.
+ */
+
 @Entity
 @RequiredArgsConstructor
 @Setter
@@ -23,6 +27,6 @@ public class Employee {
     @OneToMany
     private List<Animal> animals = new java.util.ArrayList<>();
 
-    @OneToMany
-    private List<House> houses = new java.util.ArrayList<>();
+//    @OneToMany
+//    private List<House> houses = new java.util.ArrayList<>();
 }

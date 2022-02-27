@@ -4,6 +4,10 @@ import lombok.*;
 
 import javax.persistence.*;
 
+/**
+ * Created by MadThreeD on 2022.
+ */
+
 @Entity
 @AllArgsConstructor
 @RequiredArgsConstructor
@@ -13,7 +17,6 @@ import javax.persistence.*;
 public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private Long id;
 
     private String animal_name;
@@ -23,7 +26,4 @@ public class Animal {
     @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
-
-    public Animal(String animal_name, String breed, String age, Employee employee) {
-    }
 }

@@ -4,12 +4,16 @@ import com.example.liquibase_test.dtos.AnimalDTO;
 
 import java.util.List;
 
+/**
+ * Created by MadThreeD on 2022.
+ */
+
 public interface AnimalService {
     /**
      * Создает новое животное
      * @param animal - животное для создания
      */
-    void create(AnimalDTO animal);
+    AnimalDTO create(AnimalDTO animal);
 
     /**
      * Возвращает список всех животных

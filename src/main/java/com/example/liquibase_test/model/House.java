@@ -7,7 +7,11 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
-@Entity
+/**
+ * Created by MadThreeD on 2022.
+ */
+
+//@Entity
 @RequiredArgsConstructor
 @Setter
 @Getter
