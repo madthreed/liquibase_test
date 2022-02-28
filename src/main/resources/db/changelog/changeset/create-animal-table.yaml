@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-animal-table
+      author: MadThreeD
+      changes:
+        - createTable:
+            tableName: animal
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: age
+                  type: varchar(255)
+              - column:
+                  name: animal_name
+                  type: varchar(255)
+              - column:
+                  name: breed
+                  type: varchar(255)
+              - column:
+                  name: employee_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_animal
+                    referencedTableName: employee
+                    referencedColumnNames: id

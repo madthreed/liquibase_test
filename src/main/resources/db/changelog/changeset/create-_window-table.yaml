@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-_window_table
+      author: MadThreeD
+      changes:
+        - createTable:
+            tableName: _window
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: is_closed
+                  type: boolean
+              - column:
+                  name: house_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk__window
+                    referencedTableName: house
+                    referencedColumnNames: id

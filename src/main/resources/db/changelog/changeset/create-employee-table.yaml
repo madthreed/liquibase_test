@@ -1,0 +1,24 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-employee-table
+      author: MadThreeD
+      changes:
+        - createTable:
+            tableName: employee
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: firstname
+                  type: varchar(255)
+              - column:
+                  name: lastname
+                  type: varchar(255)
+              - column:
+                  name: company
+                  type: varchar(255)
