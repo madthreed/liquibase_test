@@ -1,10 +1,14 @@
-package com.example.liquibase_test.controllers;
+package com.example.liquibase_test.controllers.excluded;
 
 import com.example.liquibase_test.dtos.AnimalDTO;
-import com.example.liquibase_test.services.AnimalService;
+import com.example.liquibase_test.services.excluded.AnimalService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+/**
+ * Created by MadThreeD on 2022.
+ */
 
 /**
  * Created by MadThreeD on 2022.

@@ -1,4 +1,4 @@
-package com.example.liquibase_test.services;
+package com.example.liquibase_test.services.excluded;
 
 import com.example.liquibase_test.dtos.AnimalDTO;
 import com.example.liquibase_test.dtos.DTOutils;
@@ -48,7 +48,7 @@ public class AnimalServiceImpl implements AnimalService {
         animalFromDb.setAnimal_name(animal.getAnimal_name());
         animalFromDb.setBreed(animal.getBreed());
         animalFromDb.setAge(animal.getAge());
-        animalFromDb.setEmployee_for_animal(animal.getEmployee_for_animal());
+        animalFromDb.setEmployee(animal.getEmployee());
 
         return DTOutils.animalToDTO(animalRepo.save(animal));
 

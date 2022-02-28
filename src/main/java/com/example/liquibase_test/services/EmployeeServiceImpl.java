@@ -40,18 +40,20 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .map(DTOutils::employeeToDTO).orElseThrow(() -> new EntityNotFoundException(id));//EntityNotFoundException(id));
     }
 
+    //todo i don't know how this make alive
+
     @Override
     public EmployeeDTO update(EmployeeDTO newEmployee, Long id) {
-        return employeeRepo.findById(id)
-                .map(employee -> {
-                    employee.setId(id);
-                    employee.setFirstname(newEmployee.getFirstname());
-                    employee.setLastname(newEmployee.getLastname());
-                    employee.setCompany(newEmployee.getCompany());
-                    employee.setAnimals(newEmployee.getAnimals().stream().map(DTOutils::animalFromDTO).collect(Collectors.toList()));
-                    return DTOutils.employeeToDTO(employeeRepo.save(employee));
-                })
-                .orElseThrow(() -> new EntityNotFoundException(id));
+        Employee employee = employeeRepo.findById(id).orElseThrow(() -> new EntityNotFoundException(id));
+
+//        employee.setFirstname(newEmployee.getFirstname());
+//        employee.setLastname(newEmployee.getLastname());
+//        employee.setCompany(newEmployee.getCompany());
+//        employee.setAnimals(newEmployee.getAnimals().stream().map(DTOutils::animalFromDTO).collect(Collectors.toList()));
+//
+//        return DTOutils.employeeToDTO(employeeRepo.save(employee));
+
+        return DTOutils.employeeToDTO(employee);
     }
 
     @Override

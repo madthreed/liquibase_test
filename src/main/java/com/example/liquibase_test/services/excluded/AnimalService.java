@@ -1,8 +1,12 @@
-package com.example.liquibase_test.services;
+package com.example.liquibase_test.services.excluded;
 
 import com.example.liquibase_test.dtos.AnimalDTO;
 
 import java.util.List;
+
+/**
+ * Created by MadThreeD on 2022.
+ */
 
 /**
  * Created by MadThreeD on 2022.

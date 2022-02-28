@@ -1,30 +1,42 @@
 package com.example.liquibase_test.model;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by MadThreeD on 2022.
  */
 
-//@Entity
+@Entity
 @RequiredArgsConstructor
+@AllArgsConstructor
 @Setter
 @Getter
-@ToString
 public class House {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private Long id;
 
     private String address;
 
-    @ManyToOne
-    @JoinColumn(name = "employee_id")
+    @ManyToOne(fetch = FetchType.LAZY)
     private Employee employee;
+
+
+    @OneToMany(mappedBy = "house",
+            cascade = CascadeType.ALL)
+    private List<_Window> windows = new java.util.ArrayList<>();
+
+
+    public void addWindow(_Window window) {
+        this.windows.add(window);
+        window.setHouse(this);
+    }
+
+    public void removeWindow(_Window window) {
+        this.windows.remove(window);
+        window.setHouse(null);
+    }
 }
