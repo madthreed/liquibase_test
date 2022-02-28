@@ -31,7 +31,7 @@ public class EmployeeController {
 
     @GetMapping("{id}")
     public EmployeeDTO read(@PathVariable Long id) {
-        return employeeService.read(id);
+        return employeeService.readById(id);
     }
 
 
@@ -54,25 +54,47 @@ public class EmployeeController {
 
 
     @PostMapping("create_some")
-    public EmployeeDTO createSome() {
-        EmployeeDTO employee = new EmployeeDTO("Alex", "Busy", "Stoxx");
-        employee.addAnimal(new AnimalDTO("gavgav", "gavker", "2.3"));
-        employee.addAnimal(new AnimalDTO("kiskis", "kisker", "1"));
-        employee.addAnimal(new AnimalDTO("hryuhryu", "hryusher", "3"));
+    public void createSome() {
+        EmployeeDTO employee1 = new EmployeeDTO("Alex", "Busy", "Stoxx");
+        employee1.addAnimal(new AnimalDTO("gavgav", "gavker", "2.3"));
+        employee1.addAnimal(new AnimalDTO("kiskis", "kisker", "1"));
+        employee1.addAnimal(new AnimalDTO("hryuhryu", "hryusher", "3"));
 
-        WindowDTO window1 = new WindowDTO(true);
-        WindowDTO window2 = new WindowDTO(true);
-        WindowDTO window3 = new WindowDTO(false);
-        WindowDTO window4 = new WindowDTO(false);
+        HouseDTO house1 = new HouseDTO("Lenina avn");
+        house1.addWindow(new WindowDTO(true));
+        house1.addWindow(new WindowDTO(true));
+        house1.addWindow(new WindowDTO(false));
+        house1.addWindow(new WindowDTO(false));
+        employee1.addHouse(house1);
 
-        HouseDTO house = new HouseDTO("Lenina avn");
-        house.addWindow(window1);
-        house.addWindow(window2);
-        house.addWindow(window3);
-        house.addWindow(window4);
+        HouseDTO house2 = new HouseDTO("Stalin avn");
+        house2.addWindow(new WindowDTO(true));
+        house2.addWindow(new WindowDTO(true));
+        house2.addWindow(new WindowDTO(true));
+        house2.addWindow(new WindowDTO(false));
+        employee1.addHouse(house2);
 
-        employee.addHouse(house);
 
-        return employeeService.create(employee);
+
+
+        EmployeeDTO employee2 = new EmployeeDTO("Vasya", "Pupkin", "MMM");
+        employee2.addAnimal(new AnimalDTO("simba", "lion", "6"));
+        employee2.addAnimal(new AnimalDTO("kotya", "cat", "2"));
+
+        HouseDTO house3 = new HouseDTO("Lenina avn");
+        house3.addWindow(new WindowDTO(true));
+        house3.addWindow(new WindowDTO(true));
+        house3.addWindow(new WindowDTO(false));
+        employee2.addHouse(house3);
+
+        HouseDTO house4 = new HouseDTO("Stalin avn");
+        house4.addWindow(new WindowDTO(true));
+        house4.addWindow(new WindowDTO(true));
+        employee2.addHouse(house4);
+
+        employeeService.create(employee1);
+        employeeService.create(employee2);
+
+//        return employeeService.create(employee1);
     }
 }

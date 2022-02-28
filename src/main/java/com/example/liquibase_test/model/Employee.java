@@ -9,6 +9,23 @@ import java.util.List;
  * Created by MadThreeD on 2022.
  */
 
+@NamedEntityGraphs(
+        {
+                @NamedEntityGraph(
+                        name = "employee-with-animals",
+                        attributeNodes = {
+                                @NamedAttributeNode("animals")
+                        })
+                ,
+                @NamedEntityGraph(
+                        name = "employee-with-houses",
+                        attributeNodes = {
+                                @NamedAttributeNode("houses")
+                        }
+                )
+        }
+)
+
 @Entity
 @AllArgsConstructor
 @RequiredArgsConstructor

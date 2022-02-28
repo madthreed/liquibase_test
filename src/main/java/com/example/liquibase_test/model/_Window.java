@@ -7,6 +7,13 @@ import javax.persistence.*;
 /**
  * Created by MadThreeD on 2022.
  */
+//@NamedEntityGraph(
+//        name = "window-entity-graph",
+//        attributeNodes = {
+//                @NamedAttributeNode("isClosed"),
+//                @NamedAttributeNode("house")
+//        }
+//)
 
 @Entity
 @RequiredArgsConstructor
@@ -20,6 +27,6 @@ public class _Window {
 
     private Boolean isClosed;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne//(fetch = FetchType.LAZY)
     private House house;
 }

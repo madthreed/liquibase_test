@@ -29,7 +29,7 @@ public interface EmployeeService {
      * @param id - id сотрудника
      * @return - объект сотрудника с заданным id
      */
-    EmployeeDTO read(Long id);
+    EmployeeDTO readById(Long id);
 
     /**
      * Обновляет сотрудника с заданным id,

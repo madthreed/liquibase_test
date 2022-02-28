@@ -8,6 +8,12 @@ import java.util.List;
 /**
  * Created by MadThreeD on 2022.
  */
+//@NamedEntityGraph(
+//        name = "house-with-windows",
+//        attributeNodes = {
+//                @NamedAttributeNode("windows")
+//        }
+//)
 
 @Entity
 @RequiredArgsConstructor
@@ -21,7 +27,7 @@ public class House {
 
     private String address;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne//(fetch = FetchType.LAZY)
     private Employee employee;
 
 
@@ -34,6 +40,7 @@ public class House {
         this.windows.add(window);
         window.setHouse(this);
     }
+
 
     public void removeWindow(_Window window) {
         this.windows.remove(window);

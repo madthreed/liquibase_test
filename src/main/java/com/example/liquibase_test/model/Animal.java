@@ -8,6 +8,7 @@ import javax.persistence.*;
  * Created by MadThreeD on 2022.
  */
 
+
 @Entity
 @AllArgsConstructor
 @RequiredArgsConstructor
@@ -22,6 +23,6 @@ public class Animal {
     private String breed;
     private String age;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne//(fetch = FetchType.LAZY)
     private Employee employee;
 }

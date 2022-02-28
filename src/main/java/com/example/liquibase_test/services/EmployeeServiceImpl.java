@@ -7,13 +7,14 @@ import com.example.liquibase_test.model.Employee;
 import com.example.liquibase_test.repos.EmployeeRepo;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.NamedEntityGraph;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
 /**
  * Created by MadThreeD on 2022.
  */
-
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepo employeeRepo;
@@ -21,6 +22,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public EmployeeServiceImpl(EmployeeRepo employeeRepo) {
         this.employeeRepo = employeeRepo;
     }
+
 
     @Override
     public List<EmployeeDTO> readAll() {
@@ -34,11 +36,15 @@ public class EmployeeServiceImpl implements EmployeeService {
         return DTOutils.employeeToDTO(employeeRepo.save(DTOutils.employeeFromDTO(employeeDTO)));
     }
 
+    @Transactional
     @Override
-    public EmployeeDTO read(Long id) {
-        return employeeRepo.findById(id)
-                .map(DTOutils::employeeToDTO).orElseThrow(() -> new EntityNotFoundException(id));//EntityNotFoundException(id));
+    public EmployeeDTO readById(Long id) {
+        employeeRepo.findOneWithAnimalsById(id).orElseThrow(() -> new EntityNotFoundException(id));
+
+        return employeeRepo.findOneWithHousesById(id)
+                .map(DTOutils::employeeToDTO).orElseThrow(() -> new EntityNotFoundException(id));
     }
+
 
     //todo i don't know how this make alive
 
