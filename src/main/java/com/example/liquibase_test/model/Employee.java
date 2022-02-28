@@ -1,9 +1,6 @@
 package com.example.liquibase_test.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -26,9 +23,37 @@ public class Employee {
     private String lastname;
     private String company;
 
-    @OneToMany
+
+    @OneToMany(mappedBy = "employee",
+            cascade = CascadeType.ALL)
     private List<Animal> animals = new java.util.ArrayList<>();
 
-//    @OneToMany
-//    private List<House> houses = new java.util.ArrayList<>();
+
+    @OneToMany(mappedBy = "employee",
+            cascade = CascadeType.ALL)
+    private List<House> houses = new java.util.ArrayList<>();
+
+
+    public void addAnimal(Animal animal) {
+        this.animals.add(animal);
+        animal.setEmployee(this);
+    }
+
+
+    public void removeAnimal(Animal animal) {
+        this.animals.remove(animal);
+        animal.setEmployee(null);
+    }
+
+
+    public void addHouse(House house) {
+        this.houses.add(house);
+        house.setEmployee(this);
+    }
+
+
+    public void removeHouse(House house) {
+        this.houses.remove(house);
+        house.setEmployee(null);
+    }
 }

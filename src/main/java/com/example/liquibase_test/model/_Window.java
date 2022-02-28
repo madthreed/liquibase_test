@@ -9,19 +9,17 @@ import javax.persistence.*;
  */
 
 @Entity
-@AllArgsConstructor
 @RequiredArgsConstructor
+@AllArgsConstructor
 @Setter
 @Getter
-public class Animal {
+public class _Window {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String animal_name;
-    private String breed;
-    private String age;
+    private Boolean isClosed;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Employee employee;
+    private House house;
 }
