@@ -11,9 +11,9 @@ import java.util.List;
 public interface AnimalService {
     /**
      * Создает новое животное
-     * @param animal - животное для создания
+     * @param animalDTO - животное для создания
      */
-    AnimalDTO create(AnimalDTO animal);
+    AnimalDTO create(AnimalDTO animalDTO);
 
     /**
      * Возвращает список всех животных
@@ -30,10 +30,10 @@ public interface AnimalService {
 
     /**
      * Обновляет животное с заданным id,
-     * @param animal - животное в соответствии с которым нужно обновить данные
+     * @param animalDTO - животное в соответствии с которым нужно обновить данные
      * @param id - id животного которого нужно обновить
      */
-    AnimalDTO update(AnimalDTO animal, Long id);
+    AnimalDTO update(AnimalDTO animalDTO, Long id);
 
     /**
      * Удаляет животное с заданным id

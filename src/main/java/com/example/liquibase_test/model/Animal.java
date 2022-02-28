@@ -13,7 +13,6 @@ import javax.persistence.*;
 @RequiredArgsConstructor
 @Setter
 @Getter
-@ToString
 public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +22,6 @@ public class Animal {
     private String breed;
     private String age;
 
-    @ManyToOne
-    @JoinColumn(name = "employee_id")
-    private Employee employee;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Employee employee_for_animal;
 }

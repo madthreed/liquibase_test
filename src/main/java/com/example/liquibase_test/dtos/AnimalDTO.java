@@ -1,6 +1,5 @@
 package com.example.liquibase_test.dtos;
 
-import com.example.liquibase_test.model.Employee;
 import lombok.*;
 
 
@@ -8,14 +7,19 @@ import lombok.*;
  * Created by MadThreeD on 2022.
  */
 
-@AllArgsConstructor
+//@AllArgsConstructor
 @RequiredArgsConstructor
 @Setter
 @Getter
-@ToString
 public class AnimalDTO {
     private String animal_name;
     private String breed;
     private String age;
-    private Employee employee;
+//    private EmployeeDTO employee_for_animal;
+
+    public AnimalDTO(String animal_name, String breed, String age) {
+        this.animal_name = animal_name;
+        this.breed = breed;
+        this.age = age;
+    }
 }

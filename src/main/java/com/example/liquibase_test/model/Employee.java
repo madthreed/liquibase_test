@@ -26,9 +26,20 @@ public class Employee {
     private String lastname;
     private String company;
 
-    @OneToMany
+    @OneToMany(mappedBy = "employee_for_animal",
+            cascade = CascadeType.ALL)
     private List<Animal> animals = new java.util.ArrayList<>();
 
 //    @OneToMany
 //    private List<House> houses = new java.util.ArrayList<>();
+
+    public void addAnimal(Animal animal) {
+        this.animals.add(animal);
+        animal.setEmployee_for_animal(this);
+    }
+
+    public void removeAnimal(Animal animal) {
+        this.animals.remove(animal);
+        animal.setEmployee_for_animal(null);
+    }
 }

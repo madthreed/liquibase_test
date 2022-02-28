@@ -25,32 +25,43 @@ public class AnimalServiceImpl implements AnimalService {
     @Override
     public List<AnimalDTO> readAll() {
         return animalRepo.findAll()
-                .stream().map(DTOutils::toDTO)
+                .stream().map(DTOutils::animalToDTO)
                 .collect(Collectors.toList());
     }
 
     @Override
     public AnimalDTO create(AnimalDTO animalDTO) {
-        return DTOutils.toDTO(animalRepo.save(DTOutils.fromDTO(animalDTO)));
+        return DTOutils.animalToDTO(animalRepo.save(DTOutils.animalFromDTO(animalDTO)));
     }
 
     @Override
     public AnimalDTO read(Long id) {
         return animalRepo.findById(id)
-                .map(DTOutils::toDTO).orElseThrow(() -> new EntityNotFoundException(id));//EntityNotFoundException(id));
+                .map(DTOutils::animalToDTO).orElseThrow(() -> new EntityNotFoundException(id));//EntityNotFoundException(id));
     }
 
     @Override
     public AnimalDTO update(AnimalDTO newAnimal, Long id) {
-        return animalRepo.findById(id)
-                .map(animal -> {
-                    animal.setAnimal_name(newAnimal.getAnimal_name());
-                    animal.setAge(newAnimal.getAge());
-                    animal.setBreed(newAnimal.getBreed());
-                    animal.setEmployee(newAnimal.getEmployee());
-                    return DTOutils.toDTO(animalRepo.save(animal));
-                })
-                .orElseThrow(() -> new EntityNotFoundException(id));
+        Animal animalFromDb = animalRepo.findById(id).orElseThrow(() -> new EntityNotFoundException(id));
+        Animal animal = DTOutils.animalFromDTO(newAnimal);
+
+        animalFromDb.setAnimal_name(animal.getAnimal_name());
+        animalFromDb.setBreed(animal.getBreed());
+        animalFromDb.setAge(animal.getAge());
+        animalFromDb.setEmployee_for_animal(animal.getEmployee_for_animal());
+
+        return DTOutils.animalToDTO(animalRepo.save(animal));
+
+//                .map(animal -> {
+//                    animal.setId(id);
+//                    animal.setAnimal_name(newAnimal.getAnimal_name());
+//                    animal.setAge(newAnimal.getAge());
+//                    animal.setBreed(newAnimal.getBreed());
+//                    animal.setEmployee(DTOutils.employeeFromDTO(newAnimal.getEmployee()));
+//                    return DTOutils.animalToDTO(animalRepo.save(animal));
+//                })
+//                .orElseThrow(() -> new EntityNotFoundException(id));
+//        return animalDTO;
     }
 
     @Override
